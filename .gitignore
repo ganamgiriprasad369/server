@@ -1,0 +1,10 @@
+#package lock
+package-lock.json
+
+#env variable
+.env
+**/.env
+
+
+#node modules
+node_modules/
