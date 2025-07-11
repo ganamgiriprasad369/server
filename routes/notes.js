@@ -24,7 +24,7 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-// PUT /notes/:id → Update note (used for autosave fallback)
+// PUT /notes/:id → Update note (optional fallback)
 router.put('/:id', async (req, res) => {
   try {
     const updated = await Note.findByIdAndUpdate(req.params.id, req.body, { new: true });

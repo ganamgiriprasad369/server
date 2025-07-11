@@ -11,28 +11,27 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: 'https://notesland-mates.netlify.app/',
+    origin: ['https://notesland-mates.netlify.app'],
     methods: ['GET', 'POST', 'PUT'],
     credentials: true
   }
 });
 
 app.use(cors({
-  origin: 'https://notesland-mates.netlify.app/',  // MUST match frontend port
+  origin: ['https://notesland-mates.netlify.app'],
   credentials: true
 }));
 
 app.use(express.json());
 app.use('/notes', noteRoutes);
 
-
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('MongoDB connected'))
   .catch(err => console.error(err));
 
-
-
-
+app.get('/', (req, res) => {
+  res.send('Server running');
+});
 
 const userColors = {};
 const COLORS = ['red', 'blue', 'green', 'purple', 'orange'];
